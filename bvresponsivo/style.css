@@ -10,3 +10,14 @@ Version: 1.0
 body{
 	
 }
+
+.header .navbar-custom{
+	background: #fff;
+}
+.header .navbar-custom .navbar-brand span{
+	color: #00e0d0;
+	font-weight: bold;
+}
+.header .navbar-collapse-custom a{
+	color: #353535;
+}
