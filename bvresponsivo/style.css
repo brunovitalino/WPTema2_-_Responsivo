@@ -13,6 +13,9 @@ body{
 
 .header .navbar-custom{
 	background: #fff;
+	border: none;
+	padding: 10px 0;
+	margin-bottom: 0;
 }
 .header .navbar-custom .navbar-brand span{
 	color: #00e0d0;
@@ -20,4 +23,27 @@ body{
 }
 .header .navbar-collapse-custom a{
 	color: #353535;
+}
+
+/*CARROUSEL*/
+/*Bolinha ativa colorida*/
+.carousel-indicators .active{
+	background: #00e0d0;
+}
+/*Botao*/
+.button-leia-mais{
+	border: 1px solid #00e0d0;
+	padding: 8px 20px;
+	color: #fff;
+	text-transform: uppercase;
+	margin-top: 10px;
+	display: inline-block;
+}
+.button-leia-mais:hover{
+	text-decoration: none;
+	border: 1px solid #FFF;
+	color: #00e0d0;
+}
+.carousel-caption{
+	padding-bottom: 100px;
 }
