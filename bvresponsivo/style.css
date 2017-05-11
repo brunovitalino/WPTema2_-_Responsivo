@@ -7,10 +7,6 @@ Author URI: http://linkedin.com/in/brunovitalino
 Version: 1.0
 */
 
-body{
-	
-}
-
 .header .navbar-custom{
 	background: #fff;
 	border: none;
@@ -46,4 +42,16 @@ body{
 }
 .carousel-caption{
 	padding-bottom: 130px;
+}
+
+/*******************/
+.servicos{
+	margin-top: 60px;
+}
+/*Personalizar uma classe de icones bootstrap*/
+.servicos i{
+	font-size: 50px;
+	text-align: center;
+	display: block;
+	color: #00e0d0;
 }
