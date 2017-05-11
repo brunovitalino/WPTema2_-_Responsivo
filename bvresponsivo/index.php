@@ -2,48 +2,58 @@
 
 	<div class="slider">
 		<div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
-		  <!-- Indicators -->
-		  <ol class="carousel-indicators">
-		    <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
-		    <li data-target="#carousel-example-generic" data-slide-to="1"></li>
-		    <li data-target="#carousel-example-generic" data-slide-to="2"></li>
-		  </ol>
+			<!-- Indicators -->
+			<ol class="carousel-indicators">
+			  	<?php
+			  		$args = array
+			  		(
+			  			'post_type' => 'slider',
+			  			'showposts' => 5
+			  		);
+			  		$my_slider = get_posts($args);
+			  		$cont = 0;
 
-		  <!-- Wrapper for slides -->
-		  <div class="carousel-inner" role="listbox">
-		    <div class="item active">
-		      <img src="<?php bloginfo('template_directory'); ?>/assets/images/slider-01.jpg" alt="...">
-		      <div class="carousel-caption">
-		        <h2>Estiloso...</h2>
-		        <a class="button-leia-mais" href="#">LEIA MAIS</a>
-		      </div>
-		    </div>
-		    <div class="item">
-		      <img src="<?php bloginfo('template_directory'); ?>/assets/images/slider-02.jpg" alt="...">
-		      <div class="carousel-caption">
-		        <h2>Ágil...</h2>
-		        <a class="button-leia-mais" href="#">LEIA MAIS</a>
-		      </div>
-		    </div>
-		    <div class="item">
-		      <img src="<?php bloginfo('template_directory'); ?>/assets/images/slider-03.jpg" alt="...">
-		      <div class="carousel-caption">
-		        <h2>Elétrico...</h2>
-		        <a class="button-leia-mais" href="#">LEIA MAIS</a>
-		      </div>
-		    </div>
-		    
-		  </div>
+			  		if($my_slider) {
+			  			foreach ($my_slider as $post) {
+			  	?>
+			    			<li data-target="#carousel-example-generic" data-slide-to="<?php echo $cont; ?>" <?php if($cont==0): ?> class="active" <?php endif; ?> ></li>
+			  	<?php
+			  				$cont++; //Nao e preciso zerar contador, pois ele so vai contar o ate o ultimo post/slider existente
+			  			}
+			  		}
+			  	?>
+			</ol>
+			<!-- Wrapper for slides -->
+			<div class="carousel-inner" role="listbox">
+			  	<?php
+			  		$cont2 = 0;
+			  		if($my_slider) {
+			  			foreach ($my_slider as $post) {
+			  				setup_postdata( $post );
+			  	?>
+						    <div class="item <?php if($cont2==0) echo "active";?>">
+								<?php the_post_thumbnail('full'); ?>
+								<div class="carousel-caption">
+									<h2><?php the_title(); ?></h2>
+									<a class="button-leia-mais" href="#">LEIA MAIS</a>
+								</div>
+						    </div>
+			    <?php
+			    			$cont2++; //Nao e preciso zerar contador, pois ele so vai contar o ate o ultimo post/slider existente
+			  			}
+			  		}
+			    ?>			    
+			</div>
+			<!-- Controls -->
+			<a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
+				<span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+				<span class="sr-only">Previous</span>
+			</a>
+			<a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
+				<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+				<span class="sr-only">Next</span>
+			</a>
 
-		  <!-- Controls -->
-		  <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
-		    <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-		    <span class="sr-only">Previous</span>
-		  </a>
-		  <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
-		    <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-		    <span class="sr-only">Next</span>
-		  </a>
 		</div>
 	</div>
 

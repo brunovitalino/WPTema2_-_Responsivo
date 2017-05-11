@@ -9,31 +9,37 @@
 
 	<div class="header">
 		<nav class="navbar navbar-default navbar-custom">
-		  <div class="container"> <!-- => Removido o container-fluid, que posiciona na tela 100% -->
-		    <!-- Brand and toggle get grouped for better mobile display -->
-		    <div class="navbar-header">
-		      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-		        <span class="sr-only">Toggle navigation</span>
-		        <span class="icon-bar"></span>
-		        <span class="icon-bar"></span>
-		        <span class="icon-bar"></span>
-		      </button>
-		      <a class="navbar-brand" href="#">BRUNO<span>WP</span></a>
-		    </div>
+			<div class="container"> <!-- => Removido o container-fluid, que posiciona na tela 100% -->
 
-		    <!-- Collect the nav links, forms, and other content for toggling -->
-		    <div class="collapse navbar-collapse navbar-collapse-custom" id="bs-example-navbar-collapse-1">
-		      <ul class="nav navbar-nav navbar-right">
-		        <li><a href="#">HOME</a></li>
-		        <li><a href="#">SOBRE</a></li>
-		        <li><a href="#">SERVIÇOS</a></li>
-		        <li><a href="#">WORDPRESS</a></li>
-		        <li><a href="#">CSS</a></li>
-		        <li><a href="#">HTML</a></li>
-		        <li><a href="#">BLOG</a></li>
-		        <li><a href="#">CONTATO</a></li>
-		      </ul>
-		    </div><!-- /.navbar-collapse -->
-		  </div><!-- /.container -->
+			    <!-- Brand and toggle get grouped for better mobile display -->
+			    <div class="navbar-header">
+					<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+						<span class="sr-only">Toggle navigation</span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+					</button>
+					<a class="navbar-brand" href="#">BRUNO<span>WP</span></a>
+			    </div>
+
+			    <?php
+				    // Register Custom Navigation Walker
+					require_once('assets/includes/wp-bootstrap-navwalker.php');
+			    ?>
+			    <?php
+		            wp_nav_menu( array(
+		                'menu'              => 'Menux', //Aqui informe o NOME de menu criado no WP
+		                'theme_location'    => 'menu-header', //Tema "Menu header", localizado no functions.php
+		                'depth'             => 2,
+		                'container'         => 'div',
+		                'container_class'   => 'collapse navbar-collapse navbar-collapse-custom',
+		                'container_id'      => 'bs-example-navbar-collapse-1',
+		                'menu_class'        => 'nav navbar-nav navbar-right',
+		                'fallback_cb'       => 'WP_Bootstrap_Navwalker::fallback',
+		                'walker'            => new WP_Bootstrap_Navwalker())
+		            );
+		        ?>
+
+			</div><!-- /.container -->
 		</nav>
 	</div>
