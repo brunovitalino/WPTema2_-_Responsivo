@@ -36,7 +36,7 @@
 							<?php the_post_thumbnail('full'); ?>
 							<div class="carousel-caption">
 								<h2><?php the_title(); ?></h2>
-								<a class="button-leia-mais" href="<?php the_field('link_slider'); ?>">LEIA MAIS</a>
+								<a class="botao-leia-mais" href="<?php the_field('link_slider'); ?>">LEIA MAIS</a>
 							</div>
 					    </div>
 		    <?php
@@ -119,13 +119,45 @@
 							<?php the_content(); ?>
 						</div>
 						<div class="col-md-6 col-lg-6">
-							<?php the_post_thumbnail(false, array('class'=>'img-responsive')); ?>
+							<?php the_post_thumbnail( false, array('class'=>'img-responsive') ); ?>
 						</div>
 			<?php
 					}
 
 				}
 			?>
+		</div>
+	</div>
+</div>
+
+<div class="blog">
+	<div class="container">
+		<h2 class="titulo-blog">Blog</h2>
+		<div class="row">
+			<?php
+				$args = array(
+					'post_type'			=> 'post',
+					'posts_per_page'	=> 3
+				);
+				$my_blog = get_posts($args);
+
+				if ($my_blog)
+				{
+					foreach ($my_blog as $post) {
+						setup_postdata( $post );
+			?>
+						<div class="col-md-4 col-lg-4">
+							<a href="<?php the_permalink(); ?>"><?php the_post_thumbnail( false, array('class' => 'img-responsive') ); ?></a>
+							<h2><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h2>
+							<?php the_excerpt(); ?>
+						</div>
+			<?php
+
+					}
+				}
+			?>
+			<div class="clear"></div>
+			<div class="botao-blog"><a class="botao-leia-mais" href="">VEJA TODOS</a></div>
 		</div>
 	</div>
 </div>
