@@ -59,27 +59,71 @@
 
 <div class="servicos">
 	<div class="container">
-		<div class="row">
-			<?php
+		<?php
 				$args = array(
 						'post_type' => 'servicos',
-						'showposts' => 3,
+						'showposts' => 6,
 						'orderby'	=> 'date',
 						'order'		=> ASC
 				);
 				$my_servicos = get_posts($args);
+				$j = 0;
+				$linha_criada = false;
 
-				if($my_servicos) {
-					foreach ($my_servicos as $post) {
-		  				setup_postdata( $post );
+				foreach ($my_servicos as $post) {
+					if ($linha_criada==false) {
+		?>	
+						<div class="row">
+		<?php
+						$linha_criada = true;
+					}
+							setup_postdata( $post );
+		?>
+							<div class="col-md-4 col-lg-4">
+								<i class="<?php the_field('iconex'); ?>"></i>
+								<h2><?php the_title(); ?></h2>
+								<?php the_excerpt(); ?>
+							</div>
+		<?php
+							$j++;
+					if ($j>=3) {
+		?>
+						</div>
+		<?php
+						$j = 0;
+						$linha_criada = false;
+					}
+				}
+		?>
+	</div>
+</div>
+
+<div class="sobre">
+	<div class="container">
+		<div class="row">
+			<?php
+				$args = array(
+					'post_type' => 'page',
+					'pagename'	=> 'sobre'
+				);
+				$my_sobre = get_posts($args);
+
+				if ($my_sobre) {
+					foreach ($my_sobre as $post) {
+						setup_postdata( $post );
 			?>
-						<div class="col-md-4 col-lg-4">
-							<i class="<?php the_field('iconex'); ?>"></i>
-							<h2><?php the_title(); ?></h2>
-							<?php the_excerpt(); ?>
+						<div class="col-md-12 col-lg-12">
+							<h2><?php the_title(); ?></h2> <!-- > Como é apenas uma pagina, não foi preciso aumentar a complexidade criando lógica para inserir uma nova class row. Usaremos css para centralizar o título. -->
+						</div>
+						<div class="col-md-6 col-lg-6">
+							<?php the_content(); ?>
+						</div>
+						<div class="col-md-6 col-lg-6">
+							<?php the_post_thumbnail(false, array('class'=>'img-responsive')); ?>
 						</div>
 			<?php
 					}
+
 				}
 			?>
 		</div>
